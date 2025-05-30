@@ -29,14 +29,17 @@ $(function () {
 
     // 배쓰밤 슬라이더 시작
     const bathbombSwiper = new Swiper('.bathbomb-swiper', {
-        slidesPerView: 1,         // 한 줄에 하나씩
-        spaceBetween: 30,
-        speed: 1000,
+        slidesPerView: 4,         // 한 줄에 하나씩
+        slidesPerGroup: 1,
+        spaceBetween: 0,
+        speed: 300,
         loop: true,
-        autoplay: {
-            delay: 2000,
-            disableOnInteraction: false,
-        },
+        slidesOffsetBefore: 0,
+        slidesOffsetAfter: 0,
+        // autoplay: {
+        //     delay: 4000,
+        //     disableOnInteraction: false,
+        // },
         navigation: {
             nextEl: '.swiper-button-next',
             prevEl: '.swiper-button-prev',
@@ -59,42 +62,42 @@ $(function () {
 
 
     // 스크롤 시 헤더 배경 변경
-    $(window).on('scroll', function () {
-        const scrollTop = $(window).scrollTop();
+    // $(window).on('scroll', function () {
+    //     const scrollTop = $(window).scrollTop();
 
-        if (scrollTop <= 120) {
-            $('header').css('transform', 'translateY(0)');
-        } else {
-            $('header').css('transform', 'translateY(-100%)');
-        }
-    });
+    //     if (scrollTop <= 120) {
+    //         $('header').css('transform', 'translateY(0)');
+    //     } else {
+    //         $('header').css('transform', 'translateY(-100%)');
+    //     }
+    // });
 
-    // 전역변수
-    const $header = $('header');
-    const $subMenu = $('.sub_menu');
+    // // 전역변수
+    // const $header = $('header');
+    // const $subMenu = $('.sub_menu');
 
-    // 마우스 헤더 위치에 오면 보이게
-    $(document).on('mousemove', function (e) {
-        const hH = $header.outerHeight();
-        if (e.clientY <= hH) {
-            $header.addClass('visible')   // 헤더 보이기
-        }
-        // else {
-        //   $header.removeClass('visible') // 헤더 숨기기
-        // }
-    });
+    // // 마우스 헤더 위치에 오면 보이게
+    // $(document).on('mousemove', function (e) {
+    //     const hH = $header.outerHeight();
+    //     if (e.clientY <= hH) {
+    //         $header.addClass('visible')   // 헤더 보이기
+    //     }
+    //     // else {
+    //     //   $header.removeClass('visible') // 헤더 숨기기
+    //     // }
+    // });
 
-    // 서브메뉴에 마우스 진입 시 헤더 보이기
-    $subMenu.on('mouseenter', function () {
-        $header.addClass('visible');
-    });
+    // // 서브메뉴에 마우스 진입 시 헤더 보이기
+    // $subMenu.on('mouseenter', function () {
+    //     $header.addClass('visible');
+    // });
 
-    // 헤더 및 서브메뉴에서 마우스 이탈 시, 스크롤이 최상단이 아닐 때만 숨기기
-    $header.add($subMenu).on('mouseleave', function () {
-        if ($(window).scrollTop() > 0) {
-            $header.removeClass('visible');
-        }
-    });
+    // // 헤더 및 서브메뉴에서 마우스 이탈 시, 스크롤이 최상단이 아닐 때만 숨기기
+    // $header.add($subMenu).on('mouseleave', function () {
+    //     if ($(window).scrollTop() > 0) {
+    //         $header.removeClass('visible');
+    //     }
+    // });
 
     const eventSwiper = new Swiper('.event-swiper', {
         slidesPerView: 'auto',
@@ -108,6 +111,24 @@ $(function () {
         navigation: {
             nextEl: '.event-next',
             prevEl: '.event-prev',
+        },
+    });
+
+    // review
+    new Swiper('.review-swiper', {
+        slidesPerView: 1,              // 한 화면에 4개 고정
+        slidesPerGroup: 1,             // 한 번에 4개씩 이동
+        spaceBetween: 0,              // 슬라이드 간격'
+        speed: 2000,
+        loop: true,                    // 무한 루프 활성화
+        loopFillGroupWithBlank: true,  // 그룹이 모자랄 때 빈 슬라이드로 채움
+        autoplay: {
+            delay: 1500,
+            disableOnInteraction: false,
+        },
+        navigation: {
+            nextEl: '.review-next',
+            prevEl: '.review-prev',
         },
     });
 

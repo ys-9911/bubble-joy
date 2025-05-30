@@ -40,7 +40,7 @@ body {
 }
 
 .top-logo {
-  margin: 15px auto;
+  margin: 10px auto;
 }
 
 .top>ul {
@@ -67,13 +67,13 @@ body {
 /* 헤더 */
 header {
   width: 100%;
-  height: 140px;
+  height: 125px;
   font-family: 'NanumSquareRound';
+  position: absolute;
   top: 0px;
   box-sizing: border-box;
   background-color: rgba(255, 255, 200, 1);
   overflow: visible; /* 꼭 필요 */
-  position: fixed;
   z-index: 9999;
   /* 다른 요소들보다 위에 보이게 해주는 코드 */
   /* transform: translateY(-100%); */
@@ -85,15 +85,17 @@ header.visible {
   transition-duration: .3s;
 }
 
+/*
 header:hover {
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 1px 1px rgb(234, 232, 232);
   transition-duration: .2s;
 }
+*/
 
 .header_in {
   width: 1100px;
   display: flex;
-  margin: 5px auto;
+  margin: 0px auto 5px;
 }
  
 .header_in>ul {
@@ -110,14 +112,16 @@ header:hover {
   overflow: visible;
 }
 
+/*
 .header_in>ul>li:hover{
-  background-image: url(/img/cloud_bg.png); /* 구름 이미지 경로 */
-  background-size: cover;                      /* 배경 꽉 채우기 */
-  background-position: center;                 /* 중앙 정렬 */
-  background-repeat: no-repeat;                /* 반복 없음 */
-  /* box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15); */
+  background-image: url(/img/cloud_bg.png); 
+  background-size: 80% 80%;                     
+  background-position: center center;                
+  background-repeat: no-repeat;                
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15); 
   transition-duration: .2s;
 }
+*/
 
 .header_in>ul>li>a {
   /* display: block; */
@@ -136,19 +140,40 @@ header:hover {
 .header_in > ul > li::before {
   content: "";
   position: absolute;
-  top: -20px; /* 구름 위쪽을 보여주기 위해 */
+  top: -10px;
   left: 50%;
   transform: translateX(-50%);
-  width: 120px;
+  width: 130px;
   height: 60px;
-  background: url('/img/cloud_bg.png') no-repeat center/contain;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  pointer-events: none; /* 마우스 이벤트 방지 */
-  z-index: -1; /* 글자 아래 배경으로 보내기 */
+  background: url('/img/cloud_bg.png');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  filter: brightness(0) opacity(0.1) blur(2px); /* ✅ 어두운 그림자 레이어 */
+  pointer-events: none;
+  z-index: -2;
+  opacity: 0; /* 필요시 동기화 */
+  transition: opacity 0s ease;
 }
 
-.header_in > ul > li:hover::before {
+.header_in > ul > li::after {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 130px;
+  height: 60px;
+  background: url('/img/cloud_bg.png');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0; /* 필요시 동기화 */
+  transition: opacity 0s ease;
+}
+
+.header_in > ul > li:hover::before,
+.header_in > ul > li:hover::after {
   opacity: 1;
 }
 
@@ -182,11 +207,14 @@ header:hover {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  padding: 15px 10px;
 }
 
 .header_items:hover .sub_menu {
   display: block;
+}
+
+.sub_menu>ul>hr{
+  border: 1px dashed rgb(255, 233, 123);
 }
 
 .header_items {
@@ -197,7 +225,7 @@ header:hover {
 }
 
 .sub_menu ul li {
-  margin: 10px 0;
+  padding: 10px 6px;
 }
 
 .sub_menu ul li a {
@@ -205,8 +233,8 @@ header:hover {
   font-weight: bold;
   color: #444;
 }
-
 /* 헤더 */
+
 
 /* 배너 */
 .banner {
@@ -411,42 +439,48 @@ section ul li img {
 }
 
 .mood-buttons button:nth-child(1) {
-  background-color: #AEEFFF;
+  background-color: #a3dfee;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
 }
 
 .mood-buttons button:hover:nth-child(1) {
-  background-color: #a3dfee;
+  background-color: #AEEFFF;
     /* 상쾌하게 */
 }
 
 .mood-buttons button:nth-child(2) {
-  background-color: #ffe98f;
+  background-color: #f3de89;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
 }
 
 .mood-buttons button:hover:nth-child(2) {
-  background-color: #f3de89;
+  background-color: #ffe98f;
     /* 포근하게 */
 }
 
 .mood-buttons button:nth-child(3) {
-  background-color: #fccff3;
+  background-color: #e6bcdd;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
 }
 
 .mood-buttons button:hover:nth-child(3) {
-  background-color: #e6bcdd;
+  background-color: #fccff3;
     /* 기분전환 */
 }
 
 #fresh.active .mood-buttons button:nth-child(1) {
   background-color: #AEEFFF;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
 }
 
 #cozy.active .mood-buttons button:nth-child(2) {
   background-color: #ffe98f;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
 }
 
 #happy.active .mood-buttons button:nth-child(3) {
   background-color: #fccff3;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
 }
 
 
@@ -554,10 +588,10 @@ section ul li img {
 
 #bathbomb {
   width: 1320px;
-  /* min-height: 1500px; */
   margin: 200px auto;
   text-align: center;
   font-family: 'NanumSquareRound';
+  position: relative;
 }
 
 #bathbomb h2 {
@@ -566,14 +600,16 @@ section ul li img {
 }
 
 #bathbomb .swiper {
-  margin-top: 100px;
+  /* margin-top: 100px; */
   margin-bottom: 20px;
 }
 
 /* swiper-container */
 .swiper.bathbomb-swiper {
-  margin-top: 100px;
-
+  padding-left: 0;
+  padding-right: 0;
+  /* margin-top: 100px; */
+  justify-content: flex-end;
 }
 
 .swiper-slide {
@@ -583,36 +619,28 @@ section ul li img {
   height: auto;
 }
 
-/* 슬라이드 1개에 포함될 6개 제품 정렬 */
-/* .product-group {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); 
-    gap: 30px;
-    padding: 0 50px;
-    align-items: start;
-    display: flex;
-    justify-content: space-between;
-  } */
-
 /* 개별 제품 카드 */
 .product {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: flex-end;
   height: 290px;
-  padding: 40px 20px;
+  width: auto;       /*  고정 너비로 정렬 */
+  max-width: 200px;
+  /* box-sizing: border-box; */
   line-height: 20px;
   text-align: center;
   border: 4px solid rgba(255, 255, 255, 0.884);
   border-radius: 10px;
   background-color: #fdfdfd;
   transition: background-color 0.4s ease;
+  padding: 20px 50px;
 }
 
-.product:hover {
+.product:hover{
   /* background-color: #fcfcf3; */
-  background-color: #f4faff;
+  /* background-color: #f4faff; */
 }
 
 .product:hover img {
@@ -624,7 +652,10 @@ section ul li img {
 .product img {
   text-align: center;
   display: block;
-  width: 11vw;
+  max-width: 100%;
+  max-height: 200px;
+  height: auto;
+  /* object-fit: contain; */
 }
 
 .perfume_roomspray {
@@ -637,15 +668,20 @@ section ul li img {
 .product h4 {
   font-size: 20px;
   font-weight: bold;
-  padding: 30px 0 10px 0;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  min-height: 48px; /* 텍스트 정렬을 위한 높이 고정 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* 제품 가격 */
 .product h5 {
-  font-size: 20px;
+  font-size: 16px;
   font-weight: bold;
   color: #555;
-  padding-right: 15px;
 }
 
 /* 제품 설명 */
@@ -660,107 +696,48 @@ section ul li img {
 .swiper-button-prev,
 .swiper-button-next {
   color: #333;
-  top: 50%;
+  position: absolute;
+  top: 55%;
   width: 40px;
   height: 40px;
-  margin-top: -20px;
-  background-color: rgba(255, 255, 255, 0.8);
+  /* background-color: rgba(255, 255, 255, 0.8); */
+  /* margin-top: -20px; */
   border-radius: 50%;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   z-index: 10;
-  /* transform: translateY(-50%); */
+  transform: translateY(-50%);
+  padding: 3px;
 }
 
 .swiper-button-prev {
-  left: 0;
+  left: 2px;
 }
 
 .swiper-button-next {
-  right: 0;
+  right: 2px;
 }
 
 .swiper-button-prev::after,
 .swiper-button-next::after {
-  font-size: 20px;
+  font-size: 25px;
   font-weight: bold;
   color: #333;
 }
 
-.swiper-button-prev {
-  left: 0;
-}
-
-/* .grape{
-    padding-top: 23px;
-    width: 250px;
-    height: 250px;
-  } */
-
-/* .twilight{
-    padding-bottom: 20px;
-  } */
-
 
 /* Bathbomb 끝 */
 
-/* Body Items 시작 */
+/* Items 시작 */
 
-.slide-layout {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 100px;
-}
+/* Body Items Swiper 구조 */
 
-.left-image img {
-  width: 500px;
-  border-radius: 30px;
-}
-
-.right-products {
-  display: flex;
-  gap: 50px;
-}
-
-.item_product {
-  text-align: center;
-  /* width: 200px; */
-}
-
-.item_product img {
-  width: 100%;
-  height: auto;
-}
-
-.item_product h4 {
-  margin-top: 10px;
-  font-size: 18px;
-}
-
-.item_product p {
-  font-size: 14px;
-  margin: 10px 0;
-}
-
-.item_product h5 {
-  font-size: 16px;
-  color: #555;
-}
-/* 챗gptt */
-
-#items {
-  /* position: relative; */
-  /* width: 1320px; */
-  margin: 0 auto;
+/* #items {
+  width: 1320px;
+ 
+  margin: 200px auto;
   text-align: center;
   font-family: 'NanumSquareRound';
-  margin-bottom: 200px;
-}
-
-.fixed_flower_orange {
-  position: absolute;
-  top: 0px;
-  right: 30px;
+  position: relative;
 }
 
 #items h2 {
@@ -768,157 +745,111 @@ section ul li img {
   font-weight: bold;
 }
 
+#bathbomb .swiper {
 
-#items span {
-  display: block;
-  padding-top: 40px;
-  padding-bottom: 100px;
-}
-
-#items ul {
-  display: flex;
-}
-
-.item_product {
-  width: auto;
-  /* height: auto; */
-  display: block;
+  margin-bottom: 20px;
 }
 
 
-.item_img {
-  height: auto !important;
-  /* 원하는 높이*/
-  width: 5vw !important;
-  /* 비율 유지 */
-  object-fit: contain;
-  /* 영역 내에 맞추기 */
-  /* display: block; */
-}
 
-.item_perfumebar_img {
-  width: auto !important;
-  object-fit: contain;
-}
-
-.item_roomspray_img {
-  width: auto !important;
-  object-fit: contain;
-}
-
-
-/* Body Items Swiper 구조 */
-
-.items-container {
-  width: 1920px; 
-  display: flex;
-  align-items: center;
-  justify-content: space-between; /* 중앙 정렬로 변경 */
-  margin: 0 auto;
-}
-
-
-.left-image {
-  width: 50%;  /* 960px */
+.swiper-slide {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* flex-shrink: 0; */
-  /* 이미지 고정 */
-}
-
-.left-image img {
-  /* width: 550px; */
-  width: 90%;
-  max-width: 800px;
-  border-radius: 30px;
-  border-radius: 40px;
-}
-
-.items-swiper {
-  width: 100%;
-  margin: 0 auto;
-  position: relative;
-}
-
-.items-slide {
-  display: flex;
-  /* justify-content: space-between;  */
-  align-items: center;
-  gap: 100px;
-}
-
-.right-section {
-  width: 25%; /* 480px */
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  height: auto;
 }
 
 
-.right-products {
-  display: flex;
-  flex-direction: row;
-  gap: 40px;
-  justify-content: center;
-  align-items: flex-start;
-  overflow: visible;
-  /* height: 764.24px; */
-
-}
-
-.right-products .item_product {
+.product {
   display: flex;
   flex-direction: column;
-  justify-content: end;
   align-items: center;
-  text-align: center;
-  width: 200px;
-}
-
-
-/* .body_bodyscrub_box{
-  margin-top: 300px;
-}
-
-.body_bodywash_box{
-  margin-top: 200px;
-}
-
-.body_bodyscrub_text{
-  margin-top: 50px;
-}
-
-.body_bodywash_text{
-  margin-top: 43px;
-}
-
-.body_bodywash_text p{
-  padding-bottom: 25px;
-} */
-
-
-.item_product .item_text h4 {
-  font-size: 20px;
-  margin: 10px 0;
-  margin-top: 30px;
-}
-
-.item_product .item_text p {
-  font-size: 14px;
+  justify-content: center;
+  height: 290px;
+  padding: 40px 40px;
   line-height: 20px;
-  margin-bottom: 10px;
+  text-align: center;
+  border: 4px solid rgba(255, 255, 255, 0.884);
+  border-radius: 10px;
+  background-color: #fdfdfd;
+  transition: background-color 0.4s ease;
 }
 
-.item_product .item_text h5 {
-  font-size: 16px;
+.product:hover {
+  
+  background-color: #f4faff;
+}
+
+.product:hover img {
+  transition: transform .4s ease;
+  transform: scale(1.05);
+}
+
+
+.product img {
+  text-align: center;
+  display: block;
+  width: 11vw;
+}
+
+.perfume_roomspray {
+  width: 86px;
+  height: 356px;
+}
+
+
+
+.product h4 {
+  font-size: 20px;
+  font-weight: bold;
+  padding: 30px 0 10px 0;
+}
+
+
+.product h5 {
+  font-size: 20px;
+  font-weight: bold;
   color: #555;
+  padding-right: 15px;
 }
 
-.swiper-button-prev.bodyitems-prev,
-.swiper-button-next.bodyitems-next {
-  color: #333;
+
+.product p {
+  font-size: 16px;
+  padding: 15px;
+  min-height: 80px;
+
 }
+
+
+.swiper-button-prev,
+.swiper-button-next {
+  color: #333;
+  position: absolute;
+  top: 50%;
+  width: 40px;
+  height: 40px;
+  z-index: 10;
+  transform: translateY(-50%);
+  padding: 3px;
+}
+
+
+
+.swiper-button-prev {
+  left: 0px;
+}
+
+.swiper-button-next {
+  right: 0px;
+}
+
+.swiper-button-prev::after,
+.swiper-button-next::after {
+  font-size: 30px;
+  font-weight: bold;
+  color: #333;
+} */
 
 /* Body Items 끝 */
 
@@ -933,7 +864,7 @@ section ul li img {
 }
 
 #event {
-  width: 1320px;
+  width: 1920px;
   margin: 0px auto;
   text-align: center;
   font-family: 'NanumSquareRound';
@@ -1007,12 +938,12 @@ section ul li img {
 
 /* ← 왼쪽 화살표 */
 .swiper-button-prev.event-prev {
-  left: 150px;
+  left: 368px;
 }
 
 /* → 오른쪽 화살표 */
 .swiper-button-next.event-next {
-  right: 150px;
+  right: 368px;
 }
 
 /* 이벤트 끝 */
@@ -1032,70 +963,72 @@ section ul li img {
   font-size: 40px;
 }
 
-.reviews-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+.reviews-grid{
+  display: flex;
   gap: 30px;
-  width: 1320px;
-  margin: 100px auto;
-  /* 원하는 여백 조절 */
 }
 
-/* 카드 기본 스타일 */
-.review-card {
-  position: relative;
-  overflow: hidden;
+.review-img{
+  width: 57%;
+  height: auto;
+}
+
+.review-slide{
   border-radius: 27px;
 }
 
-/* 이미지 확대 효과 */
-.review-card img {
-  display: block;
-  width: 100%;
-  height: auto;
-  transition: transform 0.3s ease;
-  z-index: 0;
-}
-
-.review-card:hover img {
-  transform: scale(1.05);
-}
-
-/* 오버레이 레이어 */
-.review-card .overlay {
-  position: absolute;
-  top: -20px;
-  left: -20px;
-  width: 100%;
+.review-content{
+  width: 43%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.4);
-  color: #fff;
-  display: flex;
+  display:flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 20px;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  pointer-events: none;
-  z-index: 1;
+  justify-content: space-evenly;
 }
 
-/* 호버 시 오버레이 보이기 */
-.review-card:hover .overlay {
-  opacity: 1;
+/* ← 왼쪽 화살표 */
+.swiper-button-prev.review-prev {
+  left: 10px;
 }
 
-/* 오버레이 텍스트 스타일 */
-.review-card .overlay h3 {
-  font-size: 24px;
-  margin-bottom: 12px;
+/* → 오른쪽 화살표 */
+.swiper-button-next.review-next {
+  right: 10px;
+}
+  
+.review-prev:hover, .review-next:hover{
+  background-color: rgba(255, 255, 255, 0.6);
+  transition-duration: .3s;
 }
 
-.review-card .overlay p {
-  font-size: 16px;
-  line-height: 1.5;
+.review-card{
+  background-color: #ffffffbe;
+  height: auto;
+  padding: 30px 30px;
+  border-radius: 27px;
+  box-shadow: 0px 0px 5px #d2d2d2a7;
+}
+
+.review-card:nth-child(1){
+  margin-bottom: 25px;
+}
+
+.review-top{
+  display:flex;
+}
+
+.review-top-name{
+  text-align: left;
+  line-height: 15px;
+  margin: auto 40px;
+}
+
+.review-write1{
+  width: 100px;
+  height: 100px;
+}
+
+.overlay p{
+  margin: 13px 0 5px;
 }
 
 /* 리뷰 끝 */
@@ -1105,7 +1038,7 @@ section ul li img {
   position: relative;
   /* 드래그바 위치 조정을 위해 필요합니다 */
   /* 스크롤바 기준 컨테이너 */
-  width: 1320px;
+  width: 1920px;
   margin: 200px auto 100px;
   text-align: center;
 }
@@ -1120,23 +1053,32 @@ section ul li img {
 .notice-slide {
   background: #E6F7FF;
   border-radius: 20px;
-  padding: 24px;
+  display:inline-block;
+  padding: 70px 0px;
   box-sizing: border-box;
-  width: auto;
+  width: 465px;
   /* 내용에 맞춰 너비 */
   min-width: 300px;
   /* 최소너비 */
-  font-size: 16px;
+  font-size: 19px;
   line-height: 1.5;
+  justify-content: center;
+  margin-right: 10px !important;
+  margin-left: 10px;
+}
+
+/* notice 영역의 h3와 내용 사이 길이주기 */
+.notice-slide>h3{
+  margin-bottom: 8px;
 }
 
 /* 스크롤바 커스텀 */
 .notice-section .swiper-scrollbar {
   position: relative;
   /* 절대 위치 해제 */
-  width: 20%;
+  width: 15%;
   /* 너비를 부모에 맞춤 */
-  margin: 16px auto 0;
+  margin: 46px auto 0;
   /*슬라이드와 간격 */
   height: 3px;
   background: rgba(0, 0, 0, 0.1);
@@ -1144,7 +1086,7 @@ section ul li img {
 }
 
 
-.notice-section .swiper-scrollbar .swiper-scrollbar-drag {
+.swiper-scrollbar-drag {
   background: #555;
   border-radius: 3px;
 }
@@ -1198,6 +1140,29 @@ section ul li img {
 }
 
 /* 인스타그램 끝 */
+
+/*맨위로 가기 버튼*/
+#goingTop {
+    position: fixed;
+    right: 6%;
+    bottom: 10%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: none;
+    background-color: #6699cc;
+    color: #ffffff;
+    font-size: 25px;
+    box-shadow: 0px 0px 5px #3973ac;
+    cursor: pointer;
+    z-index: 999;
+}
+/*맨위로 가기 버튼 끝*/
 
 /* 푸터 시작 */
 #footer {
