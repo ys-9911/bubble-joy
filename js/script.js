@@ -58,6 +58,15 @@ $(function () {
         },
     });
 
+    window.addEventListener('scroll', function () {
+        const topBtn = document.getElementById('goingTop');
+
+        if (window.scrollY > 0) {
+            topBtn.classList.add('show');
+        } else {
+            topBtn.classList.remove('show');
+        }
+    });
 
 
 
